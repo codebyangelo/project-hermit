@@ -1,0 +1,27 @@
+# Environment & Key Files
+api_keys.txt
+*.key
+
+# SQLite Databases & Backups
+*.db
+*.db-journal
+*.db-wal
+
+# Python Bytecode & Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Execution Logs & Telemetry
+*.log
+execution.log
+
+# Temporary Sandbox Directories
+sandbox_run/
+*.bak
+*.hermit_backup_*
+
+# Evaluation QA & Kimi Dissection Files
+questions_to_answer_for_kimi_to_evaluate.md
+answers_to_questions_for_kimi.md
