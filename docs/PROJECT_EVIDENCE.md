@@ -16,7 +16,7 @@ This document contains only factual quotes, directory structures, version histor
   * `.pyc`: 218 compiled bytecode files
   * `.db`: 26 SQLite database files (Memory state, benchmark metrics, history backups)
   * `.log`: 19 log files (Daemon logs, execution records)
-  * `.txt`: 18 text files (API key pools, thoughts ledgers)
+  * `.txt`: 18 text files (thoughts ledgers)
   * `.json`: 4 JSON configuration files
   * `.img`: 2 binary disk images (Sandbox adversarial test images)
 
@@ -25,7 +25,7 @@ This document contains only factual quotes, directory structures, version histor
 ### 2. File & Module Structure by Evolution Phase
 
 #### Core Module Files (Present in `v0.1.9`):
-* `orchestrator.py`: `StaticMCPHost` controller, API keypool manager, baseline hash freezing, candidate verification, cycle oscillation detection.
+* `orchestrator.py`: `StaticMCPHost` controller, baseline hash freezing, candidate verification, cycle oscillation detection.
 * `hermit_daemon.py`: Autonomous daemon scheduler (Phase 1 untouched headroom vs Phase 2 bottleneck sort), linear regression plateau shutdown, predictive thermal manager.
 * `sandbox.py`: RAM-disk isolated sandbox execution engine (`tmpfs` RAM disk mount, AST safety checks, resource limit enforcement).
 * `dynamic_mcp_server.py`: Decoupled dynamic MCP server payload holding target skills for dynamic mutation and runtime reloading (`importlib.reload`).
