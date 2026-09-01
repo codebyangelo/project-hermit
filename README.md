@@ -1,5 +1,6 @@
 # Project Hermit - Autonomous Self-Evolving Multi-Agent System & Dynamic MCP Tool Host
 
+[![CI: Python Test](https://github.com/codebyangelo/project-hermit/actions/workflows/test.yml/badge.svg)](https://github.com/codebyangelo/project-hermit/actions/workflows/test.yml)
 [![Version](https://img.shields.io/badge/version-v0.1.9-blue.svg)](file:///root/home/projects/project-hermit-git/v0.1.9)
 [![Python](https://img.shields.io/badge/python-3.10%2B-brightgreen.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
