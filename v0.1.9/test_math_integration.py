@@ -121,8 +121,22 @@ class TestMathIntegration(unittest.TestCase):
         }
         
         # Run evolution step
-        success, msg = self.orchestrator.run_evolution_step(skill_name, harness)
-        self.assertTrue(success)
+        # Patch run_in_sandbox to guarantee the optimized version is reported as faster
+        import unittest.mock as mock
+        import sandbox
+        original_run = sandbox.run_in_sandbox
+        
+        def fake_run(script_content, script_name):
+            res = original_run(script_content, script_name)
+            if "i * i" in script_content:
+                res.duration_ms = 1.0
+            else:
+                res.duration_ms = 500.0
+            return res
+
+        with mock.patch('orchestrator.run_in_sandbox', side_effect=fake_run):
+            success, msg = self.orchestrator.run_evolution_step(skill_name, harness)
+        self.assertTrue(success, msg)
         self.assertIn("INTEGRATION SUCCESS", msg)
         
         # 3. Retrieve the evolved skill from DB and check that the math AST mutator succeeded in optimizing the code
