@@ -4,7 +4,7 @@
 [![Version](https://img.shields.io/badge/version-v0.1.9-blue.svg)](file:///root/home/projects/project-hermit-git/v0.1.9)
 [![Python](https://img.shields.io/badge/python-3.10%2B-brightgreen.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
-[![Build & Test Status](https://img.shields.io/badge/tests-17%2F17%20passing-success.svg)](file:///root/home/projects/project-hermit-git/v0.1.9/test_hermit.py)
+
 
 **Project Hermit** is a Mobile-native, closed-loop autonomous self-optimization engine and dynamic Model Context Protocol (MCP) tool host. Operating as a background daemon (`hermit_daemon.py`), Hermit continuously discovers, profiles, refactors, and tests Python payload routines inside isolated RAM-disk sandbox environments (`sandbox.py`) using LLM-driven code synthesis combined with deterministic mathematical and AST mutators (`math_mutator.py`, `qubo_mutator.py`).
 
