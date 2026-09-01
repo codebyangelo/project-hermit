@@ -128,7 +128,9 @@ class TestMathIntegration(unittest.TestCase):
         
         def fake_run(script_content, script_name):
             res = original_run(script_content, script_name)
-            if "i * i" in script_content:
+            if "harness_drift_check" in script_name:
+                res.duration_ms = 500.0
+            elif "i * i" in script_content:
                 res.duration_ms = 1.0
             else:
                 res.duration_ms = 500.0
