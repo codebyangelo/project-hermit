@@ -113,7 +113,7 @@ class TestMathIntegration(unittest.TestCase):
         # 2. Mock call_gemini_api to return empty variants, forcing it to rely on the math_mutator's AST variants
         # and to return a verified dummy adversarial QA test so the QA step passes
         self.orchestrator.api_key = "dummy_key"
-        self.orchestrator.call_gemini_api = lambda prompt, sys_inst=None: {
+        self.orchestrator.call_gemini_api = lambda prompt, sys_inst=None, **kwargs: {
             "success": True,
             "text": '{"variants": [], "adversarial_test_code": "assert sum_of_squares(5) == 30"}',
             "tokens": 10,

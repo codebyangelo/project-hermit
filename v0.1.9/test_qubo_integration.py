@@ -107,7 +107,7 @@ class TestQUBOIntegration(unittest.TestCase):
         
         # Mock Gemini API response to suggest a local delta update variant for the QUBO solver
         self.orchestrator.api_key = "dummy_key"
-        self.orchestrator.call_gemini_api = lambda prompt, sys_inst=None: {
+        self.orchestrator.call_gemini_api = lambda prompt, sys_inst=None, **kwargs: {
             "success": True,
             "text": (
                 '{\n'

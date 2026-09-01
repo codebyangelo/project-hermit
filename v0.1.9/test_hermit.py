@@ -180,7 +180,7 @@ class TestProjectHermit(unittest.TestCase):
             "tokens": 100,
             "latency_ms": 50
         }
-        self.orchestrator.call_gemini_api = lambda prompt, system_instruction=None: mock_response
+        self.orchestrator.call_gemini_api = lambda prompt, system_instruction=None, **kwargs: mock_response
         
         try:
             success, skill_name = self.orchestrator.discover_and_register_new_skill()
