@@ -33,7 +33,5 @@ jobs:
         ruff check src tests || true
 
     - name: Run Test Suite
-      env:
-        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       run: |
         make test

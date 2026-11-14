@@ -37,7 +37,7 @@ class HermitDaemon:
         self.thermal_history = []
         self.parallelism = 2
         self.start_time = time.time()
-        self.start_time_sqlite = datetime.datetime.now(datetime.UTC).strftime('%Y-%m-%d %H:%M:%S')
+        self.start_time_sqlite = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
         self._daemon_startup_time = datetime.datetime.now(datetime.timezone.utc)
         self._last_stagnation_trigger_time = datetime.datetime.now(datetime.timezone.utc)
 

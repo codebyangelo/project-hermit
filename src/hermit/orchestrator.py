@@ -781,14 +781,14 @@ class Orchestrator:
                 
                 # Keep backup file
                 import datetime
-                timestamp_str = datetime.datetime.now(datetime.UTC).strftime('%Y%m%d_%H%M%S')
+                timestamp_str = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%d_%H%M%S')
                 final_backup_path = f"{target_file}.hermit_backup_v{timestamp_str}"
                 shutil.copy2(backup_path, final_backup_path)
                 if os.path.exists(backup_path):
                     os.remove(backup_path)
                     
                 # Schedule validation re-run in 1 hour (60 minutes)
-                scheduled_dt = datetime.datetime.now(datetime.UTC) + datetime.timedelta(minutes=60)
+                scheduled_dt = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(minutes=60)
                 scheduled_time_str = scheduled_dt.strftime('%Y-%m-%d %H:%M:%S')
                 
                 conn = self._get_conn()
@@ -823,7 +823,7 @@ class Orchestrator:
         
         conn = self._get_conn()
         cursor = conn.cursor()
-        now_str = datetime.datetime.now(datetime.UTC).strftime('%Y-%m-%d %H:%M:%S')
+        now_str = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
         cursor.execute("""
             SELECT id, file_path, function_name, code, backup_path 
             FROM scheduled_validations 
@@ -2062,7 +2062,7 @@ class Orchestrator:
             # Generate automated evolution observation report
             try:
                 from observer import EvolutionObserver
-                obs = EvolutionObserver(db_path=self.db_path)
+                obs = EvolutionObserver(db_path=self.db_path, orchestrator=self)
                 obs.generate_report()
             except Exception as obs_err:
                 ExecutionLogger.log("ORCHESTRATOR", f"Failed to generate auto-observation report: {obs_err}", "WARN")
@@ -2153,7 +2153,7 @@ class Orchestrator:
         # Generate automated evolution observation report
         try:
             from observer import EvolutionObserver
-            obs = EvolutionObserver(db_path=self.db_path)
+            obs = EvolutionObserver(db_path=self.db_path, orchestrator=self)
             obs.generate_report()
         except Exception as obs_err:
             ExecutionLogger.log("ORCHESTRATOR", f"Failed to generate auto-observation report: {obs_err}", "WARN")

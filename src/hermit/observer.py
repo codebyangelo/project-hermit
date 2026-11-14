@@ -3,7 +3,7 @@ import sys
 import sqlite3
 import datetime
 import json
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 try:
     from hermit.orchestrator import Orchestrator, DB_PATH
     from hermit.logger import ExecutionLogger
@@ -12,9 +12,9 @@ except ImportError:
     from logger import ExecutionLogger
 
 class EvolutionObserver:
-    def __init__(self, db_path: str = DB_PATH):
+    def __init__(self, db_path: str = DB_PATH, orchestrator: Optional[Any] = None):
         self.db_path = db_path
-        self.orchestrator = Orchestrator(db_path=db_path)
+        self.orchestrator = orchestrator if orchestrator else Orchestrator(db_path=db_path)
 
     def _get_conn(self):
         return sqlite3.connect(self.db_path)
@@ -100,6 +100,10 @@ class EvolutionObserver:
         4. Recommend future optimization targets and rule enhancements based on the logs.
         5. Output ONLY the markdown report content.
         """
+
+        if not self.orchestrator.has_api_access():
+            ExecutionLogger.log("OBSERVER", "Skipping report generation via Gemini: No API key available.", "INFO")
+            return "# Evolution Observation Report (Offline)\n\nNo API key available."
 
         res = self.orchestrator.call_gemini_api(prompt, system_instruction)
         if not res["success"]:

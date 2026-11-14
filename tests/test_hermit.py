@@ -268,7 +268,9 @@ class TestProjectHermit(unittest.TestCase):
         import unittest.mock as mock
         
         # Mock genai.Client
-        with mock.patch("google.genai.Client") as mock_client_cls:
+        import orchestrator
+        with mock.patch("google.genai.Client") as mock_client_cls, \
+             mock.patch.object(orchestrator.genai, "Client", mock_client_cls):
             mock_client = mock.MagicMock()
             mock_client_cls.return_value = mock_client
             
