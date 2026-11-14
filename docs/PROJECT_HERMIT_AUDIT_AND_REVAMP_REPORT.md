@@ -154,3 +154,14 @@ All 35 test cases across 9 test modules were executed against the canonical pack
 * `execution.log` & `thoughts.txt` (Raw runtime traces, ignored)
 * `sandbox_run/` (Scratch sandbox execution directory, ignored)
 * `questions_to_answer_for_kimi_to_evaluate.md` & `answers_to_questions_for_kimi.md` (Ignored)
+
+---
+
+## 7. Post-PR #1 CI Failure Diagnosis & Remediation
+
+When Pull Request #1 triggered GitHub Actions (`Python Test` matrix: 3.10, 3.11, 3.12, 3.13):
+1. **Python 3.10 Defect:** Python 3.11 added `datetime.UTC`. Accessing `datetime.datetime.now(datetime.UTC)` in `hermit_daemon.py` and `orchestrator.py` raised an `AttributeError` on Python 3.10. Replaced across all production files with `datetime.timezone.utc`.
+2. **Un-Mocked Observer Report Calls:** `orchestrator.py` instantiated `EvolutionObserver(db_path=self.db_path)` without passing the caller's orchestrator instance. When tests mocked `orchestrator.call_gemini_api`, the observer created a fresh un-mocked orchestrator. If an invalid or unauthenticated `GEMINI_API_KEY` was in the environment, the observer attempted 5 retries against Google's API (`Error code: 400 - API key not valid`). Added dependency injection to `EvolutionObserver.__init__(db_path, orchestrator=None)` and added `has_api_access()` short-circuiting.
+3. **CI Test Isolation:** Removed live secret injection (`GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}`) from `.github/workflows/test.yml` to guarantee hermetic offline test runs.
+4. **Direct Mock Patching:** Updated `test_call_gemini_api_retry_behavior` to patch `orchestrator.genai.Client` directly alongside `google.genai.Client`.
+5. **Verification:** All 35 tests pass cleanly in ~16s across all matrix environments.
