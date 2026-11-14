@@ -1,21 +1,38 @@
-# Environment & Key Files
+# Environment & Secrets
 api_keys.txt
 *.key
+.env
+.env.*
+
+# Legacy and transitional directories (preserved under tag v0.1.9-archive)
+v0.*/
 
 # SQLite Databases & Backups
 *.db
 *.db-journal
 *.db-wal
+hermit_memory_backup_*
 
 # Python Bytecode & Cache
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+.pytest_cache/
+.ruff_cache/
+
+# Build & Packaging
+build/
+dist/
+*.egg-info/
+.eggs/
 
 # Execution Logs & Telemetry
 *.log
 execution.log
+thoughts.txt
+evolution_report_*.md
+evolution_report.md
 
 # Temporary Sandbox Directories
 sandbox_run/
@@ -25,3 +42,7 @@ sandbox_run/
 # Evaluation QA & Kimi Dissection Files
 questions_to_answer_for_kimi_to_evaluate.md
 answers_to_questions_for_kimi.md
+
+# OS Metadata
+.DS_Store
+Thumbs.db

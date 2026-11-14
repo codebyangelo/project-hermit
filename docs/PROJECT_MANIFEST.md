@@ -52,7 +52,7 @@ This document records the exact structure, technology stack, dependencies, confi
 ### 4. Code Base Components (v0.1.9)
 
 #### Core Engine System
-* [orchestrator.py](../v0.1.9/orchestrator.py): Host controller, key rotation, harness verification, cycle detection.
+* [orchestrator.py](../v0.1.9/orchestrator.py): Host controller, harness verification, cycle detection.
 * [hermit_daemon.py](../v0.1.9/hermit_daemon.py): Scheduler daemon (Phase 1 untouched vs Phase 2 bottleneck), plateau auto-shutdown.
 * [sandbox.py](../v0.1.9/sandbox.py): RAM-disk (`tmpfs`) isolated execution harness with grandchild fork memory measurement and safety AST parser.
 * [dynamic_mcp_server.py](../v0.1.9/dynamic_mcp_server.py): Payload repository hosting target mutable skills.
@@ -71,7 +71,6 @@ This document records the exact structure, technology stack, dependencies, confi
 * [test_qubo_mutator.py](../v0.1.9/test_qubo_mutator.py): QUBO spin-flip unit tests.
 * [test_qubo_integration.py](../v0.1.9/test_qubo_integration.py): QUBO engine integration test.
 * [test_researcher.py](../v0.1.9/test_researcher.py): Research agent unit tests.
-* [test_key_rotation.py](../v0.1.9/test_key_rotation.py): Quota-aware keypool rotation test.
 * [test_observer.py](../v0.1.9/test_observer.py): Metric observer tests.
 
 ---

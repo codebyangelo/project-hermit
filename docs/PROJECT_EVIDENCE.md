@@ -47,7 +47,6 @@ This document contains only factual quotes, directory structures, version histor
 * `test_qubo_mutator.py`: AST spin-flip QUBO unit tests.
 * `test_qubo_integration.py`: QUBO optimization integration test.
 * `test_researcher.py`: Autonomous researcher unit test suite.
-* `test_key_rotation.py`: Quota-aware API keypool rotation unit tests.
 * `test_observer.py`: Performance and metric observer unit tests.
 
 ---
