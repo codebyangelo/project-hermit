@@ -37,7 +37,6 @@ This document records the architectural trade-offs, rejected design alternatives
 | **Strategy Ban Logic** | Count-based strategy ban (>2 occurrences in DB) | Immediately banned newly merged strategies because historical runs accumulated hits in `version_history`. | Sequence cycle pattern detection (`A-B-A-B` or `A-B-C-A-B-C` over recency window of 6). |
 | **Candidate Scoring** | Linear additive sum (`latency + memory + complexity`) | Allowed functions with 2x latency degradation to merge if code complexity dropped significantly. | Hierarchical Pareto scoring (strict latency gate, memory guard, complexity tiebreaker). |
 | **Queue Scheduling** | Single bottleneck queue (`AVG(latency) DESC`) | High-latency functions monopolized the queue; 89.6% of skills received 0 merge attempts. | Dual-Phase Scheduling (Phase 1 untouched headroom vs Phase 2 bottleneck with concurrency caps). |
-| **API Key Pool** | Round-robin key rotation without budget checks | Retried exhausted keys, leading to rate limit (`429`) loops during heavy LLM synthesis. | Quota-aware key pool tracking RPM, TPM, and daily token limits per key in `api_keys.txt`. |
 
 ---
 

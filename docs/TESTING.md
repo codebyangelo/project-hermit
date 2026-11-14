@@ -31,7 +31,6 @@ graph TD
 | `test_math_integration.py` | End-to-End Math Optimization | 3 | Verifies mathematical optimization execution inside isolated sandbox environments. |
 | `test_qubo_mutator.py` | Quantum QUBO Bitwise Engine | 6 | Validates local $O(N)$ spin-flip delta updates and bitmask packing logic. |
 | `test_qubo_integration.py` | QUBO Integration Harness | 3 | Verifies combinatorial optimization solving accuracy inside sandbox runs. |
-| `test_key_rotation.py` | Keypool Quota & Pacing | 5 | Tests RPM/TPM headroom calculation, pacing delay guards, and single-key fallback mode. |
 | `test_observer.py` | Resource Observer & Telemetry | 4 | Validates CPU thermal zone monitoring and process RSS metric collection. |
 
 ---

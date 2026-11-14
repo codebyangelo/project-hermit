@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "project-hermit"
+version = "1.0.0"
+description = "Autonomous Self-Evolving Code & Logic Engine and Dynamic MCP Tool Host"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+authors = [
+    {name = "Angelo Hershall Heith Ayton", email = "angeloayton@gmail.com"}
+]
+dependencies = [
+    "psutil>=5.9.0",
+]
+
+[project.optional-dependencies]
+llm = [
+    "google-genai>=2.0.0",
+]
+dev = [
+    "pytest>=7.0",
+    "ruff>=0.1.0",
+    "google-genai>=2.0.0",
+]
+
+[project.scripts]
+hermit = "hermit.cli:main"
+hermit-daemon = "hermit.hermit_daemon:main"
+hermit-chat = "hermit.hermit_chat:main"
+hermit-mcp = "hermit.dynamic_mcp_server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
